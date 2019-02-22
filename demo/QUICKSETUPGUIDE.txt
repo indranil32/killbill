@@ -1,0 +1,97 @@
+Install Nuxeo(DAM)
+==================
+wget -q -O- http://apt.nuxeo.org/nuxeo.key | sudo apt-key add -
+sudo add-apt-repository "deb http://apt.nuxeo.org/ $(lsb_release -cs) fasttracks" 
+sudo apt-get update 
+sudo apt-get install nuxeo
+
+Install Syncope(IAM) (http://syncope.apache.org/docs/getting-started.html#maven-project)
+====================
+mvn archetype:generate \
+    -DarchetypeGroupId=org.apache.syncope \
+    -DarchetypeArtifactId=syncope-archetype \
+    -DarchetypeRepository=http://repo1.maven.org/maven2 \
+    -DarchetypeVersion=2.1.3 ( creates the project )	
+mvn clean install ( from project root directory )
+mvn -P all clean install ( from project root directory )
+mvn -P embedded,all ( from enduser directory )
+
+
+Install RVM
+===========
+Install jRuby via RVM
+Install/Build KPM gem from https://github.com/indranil32/killbill-cloud/tree/master/kpm
+bundle install && rake build && gem install pkg/kpm*.gem
+
+Setup DB
+========
+Install mysql as a service
+sudo service mysql status/restart
+mysql -uroot -proot killbill
+mysql -uroot -proot kaui
+
+Install Tomcat 7
+================
+Installation - /usr/share/tomcat7
+setenv - export CATALINA_OPTS="$CATALINA_OPTS -server -showversion -XX:+PrintCommandLineFlags -XX:+UseCodeCacheFlushing -XX:PermSize=512m -XX:MaxPermSize=1G -Xms1G -Xmx2G -XX:+CMSClassUnloadingEnabled -XX:-OmitStackTraceInFastThrow -XX:+UseParNewGC -XX:+UseConcMarkSweepGC -XX:+CMSConcurrentMTEnabled -XX:+CMSParallelRemarkEnabled -XX:+UseCMSInitiatingOccupancyOnly -XX:CMSInitiatingOccupancyFraction=70 -XX:+ScavengeBeforeFullGC -XX:+CMSScavengeBeforeRemark -XX:NewSize=600m -XX:MaxNewSize=900m -XX:SurvivorRatio=10 -XX:+DisableExplicitGC -Djava.security.egd=file:/dev/./urandom -Dorg.killbill.server.test.mode=false -Dorg.killbill.server.properties=file:///~/workspace/killbill-server.properties -Dorg.killbill.server.http.gzip=true"
+webapp under- /var/lib/tomcat7
+logs - /var/lib/tomcat7/logs
+
+Install Killbill(UMS) (https://github.com/indranil32/killbill-cloud/tree/master/kpm)
+=====================
+kpm install kpm.yml
+sudo chmod 755 /var/lib/tomcat7/webapps/ROOT.war
+sudo service tomcat7 restart
+
+or
+
+curl https://search.maven.org/remotecontent?filepath=org/kill-bill/billing/installer/kpm/0.7.1/kpm-0.7.1-linux-x86_64.tar.gz --output kpm-0.7.1-linux-x86_64.tar.gz
+tar -xvf kpm-0.7.1-linux-x86_64.tar.gz 
+rvm install 2.2.0
+rvm --default ruby-2.2.0
+gem install kpm
+gem install bundler
+rvmsudo ruby
+rvmsudo kpm
+rvmsudo kpm KPM version
+rvmsudo kpm version
+rvmsudo kpm install
+~/kpm-0.7.1-linux-x86_64/kpm install
+sudo bin/catalina.sh stop
+
+
+Setup KAUI
+===========
+install RVM and bundler - https://rvm.io/rvm/install
+gem install bundler or gem install bundler -v '1.15.3'
+[killbill-admin-ui]
+export RAILS_ENV=production
+bundle install
+rake build
+gem install pkg/kaui-*.gem
+[killbill-admin-ui-standalone]
+
+bundle install && \
+export RAILS_ENV=production && \
+bundle exec rake assets:clobber assets:precompile && \
+bundle exec warble executable war
+
+java -Dkaui.db.adapter=mariadb \
+     -Dkaui.url=http://127.0.0.1:8080 \
+     -Dkaui.db.url=jdbc:mysql://localhost/kaui \
+     -Dkaui.db.username=killbill \
+     -Dkaui.db.password=killbill \
+     -Dwarbler.port=3000 \
+     -jar killbill-admin-ui-standalone.war
+
+or
+
+nohup java -Dkaui.db.adapter=sqlite3 -Dkaui.url=http://127.0.0.1:8080 -Dwarbler.port=3000 -DSECRET_KEY_BASE=123456789  -jar killbill-admin-ui-standalone.war &
+
+Install Blockchain
+==================
+TBD
+
+Install AdEasy
+==============
+TBD

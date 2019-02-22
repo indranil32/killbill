@@ -1,0 +1,679 @@
+<?xml version="1.0" encoding="utf-8"?><catalog xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="CatalogSchema.xsd">
+    <effectiveDate>2015-01-01T00:00:00Z</effectiveDate>
+    <catalogName>SeedCloudCatalog</catalogName>
+    <currencies>
+        <currency>USD</currency>
+        <currency>GBP</currency>
+        <currency>EUR</currency>
+        <currency>JPY</currency>
+        <currency>BTC</currency>
+    </currencies>
+    <units>
+        <unit name="cpu-hour" prettyName="cpu-hour"/>
+
+    </units>
+    <products>
+        <product name="backup-daily" prettyName="backup-daily">
+            <category>ADD_ON</category>
+            <included/>
+
+            <available/>
+
+            <limits/>
+
+        </product>
+        <product name="on-demand-metal" prettyName="on-demand-metal">
+            <category>BASE</category>
+            <included>
+                <addonProduct>backup-daily</addonProduct>
+            </included>
+            <available/>
+
+            <limits/>
+
+        </product>
+        <product name="reserved-metal" prettyName="reserved-metal">
+            <category>BASE</category>
+            <included>
+                <addonProduct>backup-daily</addonProduct>
+            </included>
+            <available/>
+
+            <limits/>
+
+        </product>
+        <product name="reserved-vm" prettyName="reserved-vm">
+            <category>BASE</category>
+            <included/>
+
+            <available>
+                <addonProduct>backup-daily</addonProduct>
+            </available>
+            <limits/>
+
+        </product>
+    </products>
+    <rules>
+        <changePolicy>
+            <changePolicyCase>
+                <policy>IMMEDIATE</policy>
+            </changePolicyCase>
+        </changePolicy>
+        <changeAlignment>
+            <changeAlignmentCase>
+                <alignment>START_OF_BUNDLE</alignment>
+            </changeAlignmentCase>
+        </changeAlignment>
+        <cancelPolicy>
+            <cancelPolicyCase>
+                <policy>IMMEDIATE</policy>
+            </cancelPolicyCase>
+        </cancelPolicy>
+        <createAlignment>
+            <createAlignmentCase>
+                <alignment>START_OF_BUNDLE</alignment>
+            </createAlignmentCase>
+        </createAlignment>
+        <billingAlignment>
+            <billingAlignmentCase>
+                <billingPeriod>ANNUAL</billingPeriod>
+                <alignment>SUBSCRIPTION</alignment>
+            </billingAlignmentCase>
+            <billingAlignmentCase>
+                <alignment>ACCOUNT</alignment>
+            </billingAlignmentCase>
+        </billingAlignment>
+        <priceList>
+            <priceListCase>
+                <toPriceList>DEFAULT</toPriceList>
+            </priceListCase>
+        </priceList>
+    </rules>
+    <plans>
+        <plan name="backup-daily-monthly-trial-bp" prettyName="backup-daily-monthly-trial-bp">
+            <product>backup-daily</product>
+            <recurringBillingMode>IN_ADVANCE</recurringBillingMode>
+            <initialPhases>
+                <phase type="TRIAL">
+                    <duration>
+                        <unit>DAYS</unit>
+                        <number>14</number>
+                    </duration>
+                    <fixed type="ONE_TIME">
+                        <fixedPrice/>
+
+                    </fixed>
+                    <usages/>
+
+                </phase>
+            </initialPhases>
+            <finalPhase type="EVERGREEN">
+                <duration>
+                    <unit>UNLIMITED</unit>
+                    <number>-1</number>
+                </duration>
+                <recurring>
+                    <billingPeriod>MONTHLY</billingPeriod>
+                    <recurringPrice>
+                        <price>
+                            <currency>USD</currency>
+                            <value>10.00</value>
+                        </price>
+                        <price>
+                            <currency>GBP</currency>
+                            <value>6.50</value>
+                        </price>
+                        <price>
+                            <currency>EUR</currency>
+                            <value>8.800</value>
+                        </price>
+                        <price>
+                            <currency>JPY</currency>
+                            <value>1000.00</value>
+                        </price>
+                        <price>
+                            <currency>BTC</currency>
+                            <value>0.038</value>
+                        </price>
+                    </recurringPrice>
+                </recurring>
+                <usages/>
+
+            </finalPhase>
+            <plansAllowedInBundle>-1</plansAllowedInBundle>
+        </plan>
+        <plan name="on-demand-metal-no-bp" prettyName="on-demand-metal-no-bp">
+            <product>on-demand-metal</product>
+            <recurringBillingMode>IN_ADVANCE</recurringBillingMode>
+            <initialPhases/>
+
+            <finalPhase type="EVERGREEN">
+                <duration>
+                    <unit>UNLIMITED</unit>
+                    <number>-1</number>
+                </duration>
+                <usages>
+                    <usage billingMode="IN_ARREAR" name="on-demand-metal-no-bp-cpu-usage" prettyName="on-demand-metal-no-bp-cpu-usage" tierBlockPolicy="ALL_TIERS" usageType="CONSUMABLE">
+                        <billingPeriod>MONTHLY</billingPeriod>
+                        <limits/>
+
+                        <blocks/>
+
+                        <tiers>
+                            <tier>
+                                <limits/>
+
+                                <blocks>
+                                    <tieredBlock type="VANILLA">
+                                        <unit>cpu-hour</unit>
+                                        <size>1.0</size>
+                                        <prices>
+                                            <price>
+                                                <currency>USD</currency>
+                                                <value>0.10</value>
+                                            </price>
+                                            <price>
+                                                <currency>GBP</currency>
+                                                <value>0.06</value>
+                                            </price>
+                                            <price>
+                                                <currency>EUR</currency>
+                                                <value>0.08</value>
+                                            </price>
+                                            <price>
+                                                <currency>JPY</currency>
+                                                <value>10.00</value>
+                                            </price>
+                                            <price>
+                                                <currency>BTC</currency>
+                                                <value>0.00038</value>
+                                            </price>
+                                        </prices>
+                                        <max>100000.0</max>
+                                    </tieredBlock>
+                                </blocks>
+                            </tier>
+                        </tiers>
+                    </usage>
+                </usages>
+            </finalPhase>
+            <plansAllowedInBundle>-1</plansAllowedInBundle>
+        </plan>
+        <plan name="reserved-metal-annual-bp" prettyName="reserved-metal-annual-bp">
+            <product>reserved-metal</product>
+            <recurringBillingMode>IN_ADVANCE</recurringBillingMode>
+            <initialPhases/>
+
+            <finalPhase type="EVERGREEN">
+                <duration>
+                    <unit>UNLIMITED</unit>
+                    <number>-1</number>
+                </duration>
+                <recurring>
+                    <billingPeriod>ANNUAL</billingPeriod>
+                    <recurringPrice>
+                        <price>
+                            <currency>USD</currency>
+                            <value>1000.00</value>
+                        </price>
+                        <price>
+                            <currency>GBP</currency>
+                            <value>650.00</value>
+                        </price>
+                        <price>
+                            <currency>EUR</currency>
+                            <value>880.00</value>
+                        </price>
+                        <price>
+                            <currency>JPY</currency>
+                            <value>100000.00</value>
+                        </price>
+                        <price>
+                            <currency>BTC</currency>
+                            <value>3.78</value>
+                        </price>
+                    </recurringPrice>
+                </recurring>
+                <usages>
+                    <usage billingMode="IN_ARREAR" name="reserved-metal-annual-cpu-usage" prettyName="reserved-metal-annual-cpu-usage" tierBlockPolicy="ALL_TIERS" usageType="CONSUMABLE">
+                        <billingPeriod>MONTHLY</billingPeriod>
+                        <limits/>
+
+                        <blocks/>
+
+                        <tiers>
+                            <tier>
+                                <limits/>
+
+                                <blocks>
+                                    <tieredBlock type="VANILLA">
+                                        <unit>cpu-hour</unit>
+                                        <size>1.0</size>
+                                        <prices>
+                                            <price>
+                                                <currency>USD</currency>
+                                                <value>0.05</value>
+                                            </price>
+                                            <price>
+                                                <currency>GBP</currency>
+                                                <value>0.03</value>
+                                            </price>
+                                            <price>
+                                                <currency>EUR</currency>
+                                                <value>0.04</value>
+                                            </price>
+                                            <price>
+                                                <currency>JPY</currency>
+                                                <value>5.00</value>
+                                            </price>
+                                            <price>
+                                                <currency>BTC</currency>
+                                                <value>0.00019</value>
+                                            </price>
+                                        </prices>
+                                        <max>100000.0</max>
+                                    </tieredBlock>
+                                </blocks>
+                            </tier>
+                        </tiers>
+                    </usage>
+                </usages>
+            </finalPhase>
+            <plansAllowedInBundle>-1</plansAllowedInBundle>
+        </plan>
+        <plan name="reserved-metal-monthly-bp" prettyName="reserved-metal-monthly-bp">
+            <product>reserved-metal</product>
+            <recurringBillingMode>IN_ADVANCE</recurringBillingMode>
+            <initialPhases/>
+
+            <finalPhase type="EVERGREEN">
+                <duration>
+                    <unit>UNLIMITED</unit>
+                    <number>-1</number>
+                </duration>
+                <recurring>
+                    <billingPeriod>MONTHLY</billingPeriod>
+                    <recurringPrice>
+                        <price>
+                            <currency>USD</currency>
+                            <value>100.00</value>
+                        </price>
+                        <price>
+                            <currency>GBP</currency>
+                            <value>65.00</value>
+                        </price>
+                        <price>
+                            <currency>EUR</currency>
+                            <value>88.00</value>
+                        </price>
+                        <price>
+                            <currency>JPY</currency>
+                            <value>10000.00</value>
+                        </price>
+                        <price>
+                            <currency>BTC</currency>
+                            <value>0.38</value>
+                        </price>
+                    </recurringPrice>
+                </recurring>
+                <usages>
+                    <usage billingMode="IN_ARREAR" name="reserved-metal-monthly-cpu-usage" prettyName="reserved-metal-monthly-cpu-usage" tierBlockPolicy="ALL_TIERS" usageType="CONSUMABLE">
+                        <billingPeriod>MONTHLY</billingPeriod>
+                        <limits/>
+
+                        <blocks/>
+
+                        <tiers>
+                            <tier>
+                                <limits/>
+
+                                <blocks>
+                                    <tieredBlock type="VANILLA">
+                                        <unit>cpu-hour</unit>
+                                        <size>1.0</size>
+                                        <prices>
+                                            <price>
+                                                <currency>USD</currency>
+                                                <value>0.10</value>
+                                            </price>
+                                            <price>
+                                                <currency>GBP</currency>
+                                                <value>0.065</value>
+                                            </price>
+                                            <price>
+                                                <currency>EUR</currency>
+                                                <value>0.088</value>
+                                            </price>
+                                            <price>
+                                                <currency>JPY</currency>
+                                                <value>10.00</value>
+                                            </price>
+                                            <price>
+                                                <currency>BTC</currency>
+                                                <value>0.00038</value>
+                                            </price>
+                                        </prices>
+                                        <max>100000.0</max>
+                                    </tieredBlock>
+                                </blocks>
+                            </tier>
+                        </tiers>
+                    </usage>
+                </usages>
+            </finalPhase>
+            <plansAllowedInBundle>-1</plansAllowedInBundle>
+        </plan>
+        <plan name="reserved-metal-monthly-trial-bp" prettyName="reserved-metal-monthly-trial-bp">
+            <product>reserved-metal</product>
+            <recurringBillingMode>IN_ADVANCE</recurringBillingMode>
+            <initialPhases>
+                <phase type="TRIAL">
+                    <duration>
+                        <unit>DAYS</unit>
+                        <number>14</number>
+                    </duration>
+                    <fixed type="ONE_TIME">
+                        <fixedPrice/>
+
+                    </fixed>
+                    <usages/>
+
+                </phase>
+            </initialPhases>
+            <finalPhase type="EVERGREEN">
+                <duration>
+                    <unit>UNLIMITED</unit>
+                    <number>-1</number>
+                </duration>
+                <recurring>
+                    <billingPeriod>MONTHLY</billingPeriod>
+                    <recurringPrice>
+                        <price>
+                            <currency>USD</currency>
+                            <value>100.00</value>
+                        </price>
+                        <price>
+                            <currency>GBP</currency>
+                            <value>65.00</value>
+                        </price>
+                        <price>
+                            <currency>EUR</currency>
+                            <value>88.00</value>
+                        </price>
+                        <price>
+                            <currency>JPY</currency>
+                            <value>10000.00</value>
+                        </price>
+                        <price>
+                            <currency>BTC</currency>
+                            <value>0.38</value>
+                        </price>
+                    </recurringPrice>
+                </recurring>
+                <usages>
+                    <usage billingMode="IN_ARREAR" name="reserved-metal-monthly-trial-cpu-usage" prettyName="reserved-metal-monthly-trial-cpu-usage" tierBlockPolicy="ALL_TIERS" usageType="CONSUMABLE">
+                        <billingPeriod>MONTHLY</billingPeriod>
+                        <limits/>
+
+                        <blocks/>
+
+                        <tiers>
+                            <tier>
+                                <limits/>
+
+                                <blocks>
+                                    <tieredBlock type="VANILLA">
+                                        <unit>cpu-hour</unit>
+                                        <size>1.0</size>
+                                        <prices>
+                                            <price>
+                                                <currency>USD</currency>
+                                                <value>0.10</value>
+                                            </price>
+                                            <price>
+                                                <currency>GBP</currency>
+                                                <value>0.065</value>
+                                            </price>
+                                            <price>
+                                                <currency>EUR</currency>
+                                                <value>0.088</value>
+                                            </price>
+                                            <price>
+                                                <currency>JPY</currency>
+                                                <value>10.00</value>
+                                            </price>
+                                            <price>
+                                                <currency>BTC</currency>
+                                                <value>0.00038</value>
+                                            </price>
+                                        </prices>
+                                        <max>100000.0</max>
+                                    </tieredBlock>
+                                </blocks>
+                            </tier>
+                        </tiers>
+                    </usage>
+                </usages>
+            </finalPhase>
+            <plansAllowedInBundle>-1</plansAllowedInBundle>
+        </plan>
+        <plan name="reserved-vm-monthly-bp" prettyName="reserved-vm-monthly-bp">
+            <product>reserved-vm</product>
+            <recurringBillingMode>IN_ADVANCE</recurringBillingMode>
+            <initialPhases/>
+
+            <finalPhase type="EVERGREEN">
+                <duration>
+                    <unit>UNLIMITED</unit>
+                    <number>-1</number>
+                </duration>
+                <recurring>
+                    <billingPeriod>MONTHLY</billingPeriod>
+                    <recurringPrice>
+                        <price>
+                            <currency>USD</currency>
+                            <value>75.00</value>
+                        </price>
+                        <price>
+                            <currency>GBP</currency>
+                            <value>48.48</value>
+                        </price>
+                        <price>
+                            <currency>EUR</currency>
+                            <value>66.21</value>
+                        </price>
+                        <price>
+                            <currency>JPY</currency>
+                            <value>7500.00</value>
+                        </price>
+                        <price>
+                            <currency>BTC</currency>
+                            <value>0.28</value>
+                        </price>
+                    </recurringPrice>
+                </recurring>
+                <usages>
+                    <usage billingMode="IN_ARREAR" name="reserved-vm-monthly-cpu-usage" prettyName="reserved-vm-monthly-cpu-usage" tierBlockPolicy="ALL_TIERS" usageType="CONSUMABLE">
+                        <billingPeriod>MONTHLY</billingPeriod>
+                        <limits/>
+
+                        <blocks/>
+
+                        <tiers>
+                            <tier>
+                                <limits/>
+
+                                <blocks>
+                                    <tieredBlock type="VANILLA">
+                                        <unit>cpu-hour</unit>
+                                        <size>1.0</size>
+                                        <prices>
+                                            <price>
+                                                <currency>USD</currency>
+                                                <value>0.05</value>
+                                            </price>
+                                            <price>
+                                                <currency>GBP</currency>
+                                                <value>0.03</value>
+                                            </price>
+                                            <price>
+                                                <currency>EUR</currency>
+                                                <value>0.04</value>
+                                            </price>
+                                            <price>
+                                                <currency>JPY</currency>
+                                                <value>5.00</value>
+                                            </price>
+                                            <price>
+                                                <currency>BTC</currency>
+                                                <value>0.00019</value>
+                                            </price>
+                                        </prices>
+                                        <max>100000.0</max>
+                                    </tieredBlock>
+                                </blocks>
+                            </tier>
+                        </tiers>
+                    </usage>
+                </usages>
+            </finalPhase>
+            <plansAllowedInBundle>-1</plansAllowedInBundle>
+        </plan>
+        <plan name="reserved-vm-monthly-trial-bp" prettyName="reserved-vm-monthly-trial-bp">
+            <product>reserved-vm</product>
+            <recurringBillingMode>IN_ADVANCE</recurringBillingMode>
+            <initialPhases>
+                <phase type="TRIAL">
+                    <duration>
+                        <unit>DAYS</unit>
+                        <number>14</number>
+                    </duration>
+                    <fixed type="ONE_TIME">
+                        <fixedPrice/>
+
+                    </fixed>
+                    <usages/>
+
+                </phase>
+            </initialPhases>
+            <finalPhase type="EVERGREEN">
+                <duration>
+                    <unit>UNLIMITED</unit>
+                    <number>-1</number>
+                </duration>
+                <recurring>
+                    <billingPeriod>MONTHLY</billingPeriod>
+                    <recurringPrice>
+                        <price>
+                            <currency>USD</currency>
+                            <value>75.00</value>
+                        </price>
+                        <price>
+                            <currency>GBP</currency>
+                            <value>48.48</value>
+                        </price>
+                        <price>
+                            <currency>EUR</currency>
+                            <value>66.21</value>
+                        </price>
+                        <price>
+                            <currency>JPY</currency>
+                            <value>7500.00</value>
+                        </price>
+                        <price>
+                            <currency>BTC</currency>
+                            <value>0.28</value>
+                        </price>
+                    </recurringPrice>
+                </recurring>
+                <usages>
+                    <usage billingMode="IN_ARREAR" name="reserved-vm-monthly-trial-cpu-usage" prettyName="reserved-vm-monthly-trial-cpu-usage" tierBlockPolicy="ALL_TIERS" usageType="CONSUMABLE">
+                        <billingPeriod>MONTHLY</billingPeriod>
+                        <limits/>
+
+                        <blocks/>
+
+                        <tiers>
+                            <tier>
+                                <limits/>
+
+                                <blocks>
+                                    <tieredBlock type="VANILLA">
+                                        <unit>cpu-hour</unit>
+                                        <size>1.0</size>
+                                        <prices>
+                                            <price>
+                                                <currency>USD</currency>
+                                                <value>0.05</value>
+                                            </price>
+                                            <price>
+                                                <currency>GBP</currency>
+                                                <value>0.03</value>
+                                            </price>
+                                            <price>
+                                                <currency>EUR</currency>
+                                                <value>0.04</value>
+                                            </price>
+                                            <price>
+                                                <currency>JPY</currency>
+                                                <value>5.00</value>
+                                            </price>
+                                            <price>
+                                                <currency>BTC</currency>
+                                                <value>0.00019</value>
+                                            </price>
+                                        </prices>
+                                        <max>100000.0</max>
+                                    </tieredBlock>
+                                </blocks>
+                            </tier>
+                        </tiers>
+                    </usage>
+                </usages>
+            </finalPhase>
+            <plansAllowedInBundle>-1</plansAllowedInBundle>
+        </plan>
+        <plan name="test-monthly-no-trial" prettyName="test-monthly-no-trial">
+            <product>on-demand-metal</product>
+            <recurringBillingMode>IN_ADVANCE</recurringBillingMode>
+            <initialPhases/>
+
+            <finalPhase type="EVERGREEN">
+                <duration>
+                    <unit>UNLIMITED</unit>
+                    <number>-1</number>
+                </duration>
+                <recurring>
+                    <billingPeriod>MONTHLY</billingPeriod>
+                    <recurringPrice>
+                        <price>
+                            <currency>USD</currency>
+                            <value>10</value>
+                        </price>
+                    </recurringPrice>
+                </recurring>
+                <usages/>
+
+            </finalPhase>
+            <plansAllowedInBundle>-1</plansAllowedInBundle>
+        </plan>
+    </plans>
+    <priceLists>
+        <defaultPriceList name="DEFAULT">
+            <plans>
+                <plan>on-demand-metal-no-bp</plan>
+                <plan>reserved-metal-annual-bp</plan>
+                <plan>reserved-metal-monthly-bp</plan>
+                <plan>reserved-vm-monthly-bp</plan>
+                <plan>test-monthly-no-trial</plan>
+            </plans>
+        </defaultPriceList>
+        <childPriceList name="TRIAL">
+            <plans>
+                <plan>backup-daily-monthly-trial-bp</plan>
+                <plan>reserved-metal-monthly-trial-bp</plan>
+                <plan>reserved-vm-monthly-trial-bp</plan>
+            </plans>
+        </childPriceList>
+    </priceLists>
+</catalog>
