@@ -86,7 +86,7 @@ java -Dkaui.db.adapter=mariadb \
 
 or
 
-nohup java -Dkaui.db.adapter=sqlite3 -Dkaui.url=http://127.0.0.1:8080 -Dwarbler.port=3000 -DSECRET_KEY_BASE=123456789  -jar killbill-admin-ui-standalone.war &
+nohup java -Dlogback.configurationFile=/var/lib/killbill/logback_kaui.xml -DLOGS_DIR=/var/log/tomcat7 -Dkaui.db.adapter=sqlite3 -Dkaui.url=http://127.0.0.1:8080 -Dwarbler.port=3000 -DSECRET_KEY_BASE=123456789  -jar killbill-admin-ui-standalone.war &
 
 Install Blockchain
 ==================
