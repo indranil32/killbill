@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<settings xmlns="http://maven.apache.org/SETTINGS/1.0.0"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/SETTINGS/1.0.0 http://maven.apache.org/xsd/settings-1.0.0.xsd">
+  
+  <mirrors>
+    <mirror>
+      <id>centralmirror</id>
+      <name>Apache maven central mirror Spain</name>
+      <url>http://downloads.centralmirror.com/public/maven</url>
+      <mirrorOf>maven_central</mirrorOf>
+    </mirror>
+	<mirror>
+      <id>jcg_mirror</id>
+      <name>Java Code Gueeks Mirror Spain</name>
+      <url>http://downloads.jcgmirror.com/public/jcg</url>
+      <mirrorOf>javacodegueeks_repo</mirrorOf>
+    </mirror>
+  </mirrors>
+
+  
+  <profiles>
+    <profile>
+		<id>mvnrepository</id>
+		<activation>
+			<activeByDefault>true</activeByDefault>
+		</activation>
+        <repositories>
+            <repository>
+                <id>mvnrepository1</id>
+                <name>mvnrepository1</name>
+                <url>http://www.mvnrepository.com</url>
+            </repository>
+			<repository>
+			    <id>mvnrepository2</id>
+                <name>mvnrepository2</name>
+                <url>http://central.maven.org/maven2</url>
+            </repository>
+			<repository>
+			    <id>mvnrepository3</id>
+                <name>mvnrepository3</name>
+					<url>https://oss.sonatype.org/content/repositories/snapshots</url>
+            </repository>
+			<repository>
+                    <snapshots>
+                        <enabled>false</enabled>
+                    </snapshots>
+                    <id>central</id>
+                    <name>bintray</name>
+                    <url>https://jcenter.bintray.com</url>
+                </repository>
+        </repositories>
+		<pluginRepositories>
+                <pluginRepository>
+                    <snapshots>
+                        <enabled>false</enabled>
+                    </snapshots>
+                    <id>central</id>
+                    <name>bintray-plugins</name>
+                    <url>https://jcenter.bintray.com</url>
+                </pluginRepository>
+            </pluginRepositories>
+    </profile>
+  </profiles>
+  <activeProfiles>
+    <activeProfile>mvnrepository</activeProfile>
+  </activeProfiles>
+</settings>
